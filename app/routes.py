@@ -50,7 +50,7 @@ def edit(id):
     return render_template('edit.html', usuario = usuario)
 
 
-# Login ( AINDA EM DESENVOLVIMENTO )
+# Login 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -67,7 +67,7 @@ def login():
     
     return render_template('login.html')
 
-# Logout ( AINDA EM DESENVOLVIMENTO )
+# Logout 
 @app.route('/logout')
 def logout():
     logout_user()
