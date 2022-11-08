@@ -14,6 +14,7 @@ app = Flask(__name__)
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@localhost:{DB_PORT}/postgres'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = '13579'
 
 login_manager = LoginManager(app)
 db = SQLAlchemy(app)
