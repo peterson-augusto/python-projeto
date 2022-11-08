@@ -6,15 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
   </head>
-  <body>
+  <header>
     {% if current_user.is_authenticated %}
-
     <div>
-      <h1>{{ current_user.f_name }}</h1>
+      <h2>Olá, {{ current_user.f_name }}</h2>
       <p>Logado.</p>
 
-      <a href="/delete/{{id}}">Deletar</a>
-      <a href="/edit/{{id}}">Editar</a>
+      <a href="/delete/{{id}}">Deletar</a> | <a href="/edit/{{id}}">Editar</a> |
 
       <a href="{{ url_for('logout') }}">Sair</a>
     </div>
@@ -23,7 +21,9 @@
     <div>
       <h1>Visitante</h1>
       <p>Não logado.</p>
+      <a href="/cadastro">Cadastro</a> |
+      <a href="/login">Login</a>
     </div>
     {% endif %}
-  </body>
+  </header>
 </html>
