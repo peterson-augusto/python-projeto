@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/login.css">
     <title>Login</title>
-    <link rel="stylesheet" href="app/static/login.css" />
   </head>
 
-  <body style="background-color: #0199c7">
+  <body>
     <section class="area-login">
       <div class="login">
         <div class="login-name">Login</div>
@@ -27,9 +27,9 @@
             id="password"
             placeholder="Senha"
           />
-          <input type="submit" value="entrar" />
+          <input type="submit" value="Entrar" id="button-enter" />
         </form>
-        <p>Ainda não tem uma conta?<a href="/cadastro">Criar conta</a></p>
+        <p>Ainda não tem uma conta?<a href="/cadastro" type="button" id="button">Criar conta</a></p>
       </div>
     </section>
   </body>

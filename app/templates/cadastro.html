@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="/static/cadastro.css" />
     
     <title>Cadastro</title>
-    
   </head>
   <body>
     <div class="container">
       <div class="form">
-        <form action="/cadastro" method="post">
+        <form action="/cadastro" method="post" id="form">
           <div class="form-header">
             <div class="title">
               <h1>Cadastre-se</h1>
@@ -24,64 +23,42 @@
           <div class="input-group">
             <div class="container-a">
               <div class="input-box">
-                <label for="firstname">Primeiro nome</label>
-                <input
-                  type="text"
-                  id="f_name"
-                  name="f_name"
-                  placeholder="Digite seu primeiro nome"
-                  required
-                  class="form_control"
-                />
+                <label for="f_name">Primeiro nome</label>
+                <input type="text" id="f_name" name="f_name" placeholder="Digite seu primeiro nome" class="inputs required" oninput="nameValidate()"/>
+                <span class="span-required">Deve ter no mínimo 5 caracteres</span>
               </div>
 
               <div class="input-box">
-                <label for="lastname">Sobrenome</label>
-                <input
-                  type="text"
-                  id="l_name"
-                  name="l_name"
-                  placeholder="Digite seu sobrenome"
-                  required
-                  class="form-control"
-                />
+                <label for="l_Name">Sobrenome</label>
+                <input type="text" id="l_name" name="l_name" placeholder="Digite seu sobrenome" class="inputs required" oninput="lastNameValidate()"/>
+                <span class="span-required">Preencha este campo</span>
               </div>
 
               <div class="input-box">
                 <label for="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Digite seu email"
-                  required
-                />
+                <input type="text" id="email" name="email" placeholder="Digite seu email" class="inputs required" oninput="emailValidate()"/>
+                <span class="span-required">Digite um email válido</span>
               </div>
             </div>
 
             <div class="container-b">
               <div class="input-box">
                 <label for="date">Data de nascimento</label>
-                <input
-                  type="date"
-                  id="birthdata"
-                  name="birthdata"
-                  placeholder="Data de aniversário"
-                  required
-                />
+                <input type="date" id="birthdata" name="birthdata" placeholder="Data de aniversário" class="inputs required" oninput="dateValidate()"/>
+                <span class="span-required">Preencha este campo</span>
               </div>
 
               <div class="input-box">
                 <label for="password">Senha</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Digite sua senha"
-                  required
-                />
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" class="inputs required" oninput="mainPasswordValidate()" />
+                <span class="span-required">Senha com no mínimo 8 caracteres</span>
               </div>
 
+              <div class="input-box">
+                <label for="Confirmpassword">Confirme sua senha</label>
+                <input type="password" id="senha_confirme" name="senha_confirme" placeholder="Digite novamente" class="inputs required" oninput="comparePassword()" />
+                <span class="span-required">As senhas devem ser compatíveis </span>
+              </div>
             </div>
           </div>
 
@@ -108,10 +85,99 @@
             </div>
           </div>
           <div class="continue-button">
-            <button type="submit" class="continue">Continuar</a></button>
+            <button type="submit" class="continue">Enviar</a></button>
           </div>
         </form>
       </div>
     </div>
   </body>
+
+  <script>
+    const form = document.getElementById('form');
+    const campos = document.querySelectorAll('.required');
+    const spans = document.querySelectorAll('.span-required');
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      nameValidate();
+      emailValidate();
+      dateValidate();
+      mainPasswordValidate();
+      comparePassword();
+      lastNameValidate();
+  });
+    
+
+function setError(index) {
+    campos[index].style.border = '2px solid #e63636';
+    spans[index].style.display = 'block'
+}
+
+function removeError(index) {
+    campos[index].style.border = '';
+    spans[index].style.display = 'none';
+
+}
+
+/* VERIFICAR VALIDAÇÃO DE NOME */
+function nameValidate() {
+  if (campos[0].value.length < 5) {
+    setError(0);
+  }
+  else {
+    removeError(0);
+  }
+}
+/* VERIFICAR VALIDAÇÃO DO SOBRENOME */
+function lastNameValidate() {
+  if (campos[1].value == '') {
+    setError(1);
+  }
+  else {
+    removeError(1);
+  }
+}
+
+/* VERIFICAR VALIDAÇÃO DE EMAIL */
+function emailValidate() {
+  if (!emailRegex.test(campos[2].value)) {
+    setError(2);
+  }
+  else {
+    removeError(2);
+  }
+}
+
+/* VERIFICAR VALIDAÇÃO DA DATA*/
+function dateValidate() {
+  if (campos[3].value == '') {
+    setError(3);
+  }
+  else {
+    removeError(3);
+  }
+}
+
+/* VERIFICAR VALIDAÇÃO DA SENHA */
+function mainPasswordValidate() {
+  if (campos[4].value.length < 8) {
+    setError(4);
+  }
+  else {
+    removeError(4);
+  }
+}
+
+/* VERIFICAR E COMPARAR SENHAS */
+function comparePassword() {
+  if (campos[4].value == campos[5].value && campos[5].value.length >= 8) {
+    removeError(5);
+  }
+  else {
+    setError(5);
+  }
+}
+
+  </script>
 </html>
