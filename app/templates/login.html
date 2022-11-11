@@ -6,30 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../static/login.css">
     <title>Login</title>
+    
   </head>
 
   <body>
-    <section class="area-login">
+    <section class="area-login" >
       <div class="login">
         <div class="login-name">Login</div>
 
         <form action="/login" , method="post">
-          <input
-            type="text"
-            name="email"
-            id="email"
-            placeholder="Email"
-            autofocus
-          />
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Senha"
-          />
+          <label for="email" id="email" class="input-label">Email:</label>
+          <input type="text" name="email" id="email" placeholder="Email" autofocus />
+
+          <label for="password" id="password" class="input-label">Senha:</label>  
+          <input type="password" name="password" id="password" placeholder="Senha" />
+         
           <input type="submit" value="Entrar" id="button-enter" />
-        </form>
-        <p>Ainda não tem uma conta?<a href="/cadastro" type="button" id="button">Criar conta</a></p>
+          <a href="/cadastro" type="button" id="button">Cadastre-se</a></p>
+
+        </form> <br>
       </div>
     </section>
   </body>
