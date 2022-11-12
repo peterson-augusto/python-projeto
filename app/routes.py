@@ -43,6 +43,7 @@ def edit(id):
         usuario.f_name = request.form['f_name']
         usuario.l_name = request.form['l_name']
         usuario.email = request.form['email']
+        usuario.gender = request.form['gender']
         usuario.birthdata = request.form['birthdata']
         usuario.password = request.form['password']
         db.session.commit()

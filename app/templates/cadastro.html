@@ -25,7 +25,7 @@
               <div class="input-box">
                 <label for="f_name">Primeiro nome</label>
                 <input type="text" id="f_name" name="f_name" placeholder="Digite seu primeiro nome" class="inputs required" oninput="nameValidate()"/>
-                <span class="span-required">Deve ter no mínimo 5 caracteres</span>
+                <span class="span-required">Deve ter no mínimo 3 caracteres</span>
               </div>
 
               <div class="input-box">
@@ -63,8 +63,12 @@
           </div>
 
           <div class="gender-inputs">
-            <h6>Gênero</h6>
+            
+            <div class="gender-title">
+              <h6>Gênero</h6>
+            </div>
             <div class="gender-group">
+              
               <div class="gender-input">
                 <input type="radio" id="female" name="gender" value="Feminino" />
                 <label for="female">Feminino</label>
@@ -76,13 +80,13 @@
               </div>
               <br />
               <div class="gender-input">
-                <input type="radio" id="others" name="gender" Outros/>
+                <input type="radio" id="others" name="gender" value="Outros"/>
                 <label for="others">Outros</label>
               </div>
             </div>
           </div>
           <div class="continue-button">
-            <button type="submit" class="continue">Enviar</a></button>
+            <button type="submit" class="continue">Continuar</a></button>
           </div>
         </form>
       </div>
@@ -95,7 +99,7 @@
     const spans = document.querySelectorAll('.span-required');
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     
-    form.addEventListener('submit', (event) => {
+    /*form.addEventListener('submit', (event) => {
       event.preventDefault();
       nameValidate();
       emailValidate();
@@ -103,15 +107,16 @@
       mainPasswordValidate();
       comparePassword();
       lastNameValidate();
-  });
-    
+});*/
+
+
 
 function setError(index) {
     campos[index].style.border = '2px solid #e63636';
     spans[index].style.display = 'block'
 }
 
-function removeError(index) {
+  function removeError(index) {
     campos[index].style.border = '';
     spans[index].style.display = 'none';
 
@@ -119,10 +124,12 @@ function removeError(index) {
 
 /* VERIFICAR VALIDAÇÃO DE NOME */
 function nameValidate() {
-  if (campos[0].value.length < 5) {
+  if (campos[0].value.length < 3) 
+  {
     setError(0);
   }
-  else {
+  else 
+  {
     removeError(0);
   }
 }

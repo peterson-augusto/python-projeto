@@ -13,8 +13,8 @@ class Users(db.Model, UserMixin):
     f_name = db.Column(db.String(70), nullable=True)
     l_name = db.Column(db.String(70), nullable=True)
     email = db.Column(db.String(30), unique=True)
-    gender = db.Column(db.String(30))
-    birthdata = db.Column(db.Date)
+    gender = db.Column(db.String(30), nullable=True)
+    birthdata = db.Column(db.Date)  
     password = db.Column(db.String, nullable=False)
     
     def __init__(self, f_name, l_name, email, gender, birthdata, password):
