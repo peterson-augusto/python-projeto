@@ -17,23 +17,24 @@ class Users(db.Model, UserMixin):
     birthdata = db.Column(db.Date)  
     password = db.Column(db.String, nullable=False)
     
-    def __init__(self, f_name, l_name, email, gender, birthdata, password):
+    def __init__(self, f_name, l_name, email, gender, birthdata, password, senha_confirme):
         self.f_name = f_name
         self.l_name = l_name
         self.email = email
         self.gender = gender
         self.birthdata = birthdata
         self.password = generate_password_hash(password)
+        self.senha_confirme = generate_password_hash(senha_confirme)
         
     def verify_password(self, pwd):
         return check_password_hash(self.password, pwd)
-    
+
 db.create_all()
 
 
 class UserSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'f_name', 'l_name', 'email', 'gender', 'birthdata', 'password')
+        fields = ('id', 'f_name', 'l_name', 'email', 'gender', 'birthdata', 'password', 'senha_confirme')
         
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)

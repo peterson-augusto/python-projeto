@@ -13,12 +13,14 @@ def home():
 @app.route('/cadastro', methods = ['GET','POST'])
 def cadastro():
     if request.method == 'POST':
-        usuario = Users( f_name = request.form['f_name'],
-                         l_name = request.form['l_name'], 
-                         email = request.form['email'], 
-                         gender = request.form['gender'],
-                         birthdata = request.form['birthdata'], 
-                         password = request.form['password'])
+        usuario = Users(f_name = request.form['f_name'],
+                        l_name = request.form['l_name'], 
+                        email = request.form['email'], 
+                        gender = request.form['gender'],
+                        birthdata = request.form['birthdata'], 
+                        password = request.form['password'],
+                        senha_confirme = request.form['senha_confirme'])
+                         
         
         db.session.add(usuario)
         db.session.commit()
@@ -46,6 +48,8 @@ def edit(id):
         usuario.gender = request.form['gender']
         usuario.birthdata = request.form['birthdata']
         usuario.password = request.form['password']
+        usuario.senha_confirme = request.form['senha_confirme']
+        
         db.session.commit()
         return redirect(url_for('login'))
     return render_template('edit.html', usuario = usuario)
